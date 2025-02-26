@@ -55,3 +55,34 @@ const thirdBurger = structuredClone(hamburger);
 // nel quale sono annidati il maker e il restaurant,
 // e poi due copie profonde di burger, che contengono
 // la stessa struttura del primo
+
+const chef = {
+  name: "Chef Hyur",
+  age: 29,
+  makeBurger: (num = 1) => {
+    console.log(`Ecco ${num} hamburger per te!`);
+  },
+};
+
+const restaurant = {
+  name: "Hyur's Burgers",
+  address: {
+    street: "Main Street",
+    number: 123,
+  },
+  openingDate: new Date(2025, 3, 11),
+  isOpen: false,
+};
+
+// Il metodo migliore per clonare l'oggetto chef è lo spread
+// perchè mi permette di creare una shallow copy con tutte le
+// proprietà, includendo il riferimento alla funzione in
+// makeBurger
+
+// Nel caso di restaurant sarebbe più indicato un metodo
+// structuredClone(), in quanto mi permetterebbe di clonare
+// oggetti complessi annidati come Date.
+// Se optassimo per JSON.parse(JSON.stringify()) avremmo
+// la possibilità di fare una deep copy, ma l'oggetto Date
+// sarebbe convertito in stringa, dato che sarebbe serializzato
+// e deserializzato
