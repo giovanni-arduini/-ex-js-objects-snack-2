@@ -34,22 +34,22 @@
 
 //
 
-const hamburger = {
-  name: "Cheese Burger",
-  weight: 250,
-  maker: {
-    name: "Anonymous Chef",
-    restaurant: {
-      name: "Hyur's Burgers",
-      address: "Main Street, 123",
-      isOpen: true,
-    },
-    age: 29,
-  },
-};
+// const hamburger = {
+//   name: "Cheese Burger",
+//   weight: 250,
+//   maker: {
+//     name: "Anonymous Chef",
+//     restaurant: {
+//       name: "Hyur's Burgers",
+//       address: "Main Street, 123",
+//       isOpen: true,
+//     },
+//     age: 29,
+//   },
+// };
 
-const secondBurger = structuredClone(hamburger);
-const thirdBurger = structuredClone(hamburger);
+// const secondBurger = structuredClone(hamburger);
+// const thirdBurger = structuredClone(hamburger);
 
 // saranno creati nove oggetti: il primo burger,
 // nel quale sono annidati il maker e il restaurant,
@@ -86,3 +86,38 @@ const restaurant = {
 // la possibilità di fare una deep copy, ma l'oggetto Date
 // sarebbe convertito in stringa, dato che sarebbe serializzato
 // e deserializzato
+
+const hamburger = {
+  name: "Cheese Burger",
+  weight: 250,
+  maker: {
+    name: "Anonymous Chef",
+    restaurant: {
+      name: "Hyur's Burgers",
+      address: "Main Street, 123",
+      isOpen: true,
+    },
+    age: 29,
+  },
+};
+
+const newRestaurant = { ...hamburger.maker.restaurant };
+newRestaurant.name = "Hyur's II";
+newRestaurant.address = "Second Street, 12";
+const secondBurger = { ...hamburger };
+secondBurger.maker.restaurant = newRestaurant;
+secondBurger.maker.name = "Chef Hyur";
+
+console.log(hamburger.maker.name);
+("Chef Hyur");
+console.log(secondBurger.maker.name);
+("Chef Hyur");
+console.log(hamburger.maker.restaurant.name);
+("Hyur's II");
+console.log(secondBurger.maker.restaurant.name);
+("Hyur's II");
+
+// Saranno creati in memoria 5 oggetti:
+// burger, maker, restaurant, newRestaurant, secondBurger
+// SecondBurger sarà solo una shallow copy di berger,
+// quindi gli oggetti annidati sono passati per reference
