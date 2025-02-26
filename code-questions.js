@@ -56,23 +56,23 @@
 // e poi due copie profonde di burger, che contengono
 // la stessa struttura del primo
 
-const chef = {
-  name: "Chef Hyur",
-  age: 29,
-  makeBurger: (num = 1) => {
-    console.log(`Ecco ${num} hamburger per te!`);
-  },
-};
+// const chef = {
+//   name: "Chef Hyur",
+//   age: 29,
+//   makeBurger: (num = 1) => {
+//     console.log(`Ecco ${num} hamburger per te!`);
+//   },
+// };
 
-const restaurant = {
-  name: "Hyur's Burgers",
-  address: {
-    street: "Main Street",
-    number: 123,
-  },
-  openingDate: new Date(2025, 3, 11),
-  isOpen: false,
-};
+// const restaurant = {
+//   name: "Hyur's Burgers",
+//   address: {
+//     street: "Main Street",
+//     number: 123,
+//   },
+//   openingDate: new Date(2025, 3, 11),
+//   isOpen: false,
+// };
 
 // Il metodo migliore per clonare l'oggetto chef è lo spread
 // perchè mi permette di creare una shallow copy con tutte le
@@ -121,3 +121,31 @@ console.log(secondBurger.maker.restaurant.name);
 // burger, maker, restaurant, newRestaurant, secondBurger
 // SecondBurger sarà solo una shallow copy di berger,
 // quindi gli oggetti annidati sono passati per reference
+
+const chef = {
+  name: "Chef Hyur",
+  age: 29,
+  makeBurger: (num = 1) => {
+    console.log(`Ecco ${num} hamburger per te!`);
+  },
+  restaurant: {
+    name: "Hyur's Burgers",
+    welcomeClient: () => {
+      console.log("Benvenuto!");
+    },
+    address: {
+      street: "Main Street",
+      number: 123,
+      showAddress: () => {
+        console.log("Main Street 123");
+      },
+    },
+    isOpen: true,
+  },
+};
+
+// il metodo migliore per copiare l'oggetto chef è lo spread op
+// in quanto potremo copiare anche la funzione welcomeClient.
+// il resto degli oggetti e delle funzioni annidate saranno passate
+// saranno passate per riferimento, quindi dovremo stare attenti ad
+// eventuali modifiche
