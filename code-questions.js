@@ -149,3 +149,22 @@ const chef = {
 // il resto degli oggetti e delle funzioni annidate saranno passate
 // saranno passate per riferimento, quindi dovremo stare attenti ad
 // eventuali modifiche
+
+function deepCopyOf(object) {
+  if (typeof object !== "object") {
+    return object;
+  }
+
+  const copy = {};
+
+  for (const key in object) {
+    const value = object[key];
+    if (typeof value !== "object") {
+      copy[key] = value;
+    } else {
+      copy[key] = deepCopyOf(value);
+    }
+  }
+}
+
+deepCopyOf();
